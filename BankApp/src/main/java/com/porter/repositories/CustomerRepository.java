@@ -12,12 +12,18 @@ public class CustomerRepository implements GenericRepository<Customer> {
 		
 	}
 
+	@Override 
 	public Customer add(Customer c) {
-		return null;
+		Customer customer = MockDB.customers.stream().max((c1, c2) -> c1.getId().compareTo(c2.getId())).orElse(null);
+		Integer id = (customer != null) ? customer.getId() + 1 : 1;
+		c.setId(id);
+		MockDB.customers.add(c);
+		return c;
 	}
 
 	public Customer getById(Integer id) {
-		return null;
+		Customer c = MockDB.customers.stream().filter((customer) -> customer.getId() == id).findFirst().orElse(null);
+		return c;
 	}
 
 	public void update(Customer change) {
@@ -25,7 +31,7 @@ public class CustomerRepository implements GenericRepository<Customer> {
 	}
 
 	public void delete(Customer c) {
-		
+		MockDB.customers.remove(c);
 	}
 
 }
