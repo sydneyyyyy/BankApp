@@ -31,7 +31,18 @@ public class Customer {
 		this.password = password;
 	}
 		
+//	public Customer getCustomer() {
+//		return customer;
+//	}
 	
+	public Customer(String username, String password, double accountBalance) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.accountBalance = accountBalance;
+	}
+
+
 	// public getters and setters
 	public Integer getId() {
 		return id;
@@ -66,8 +77,8 @@ public class Customer {
 	}
 
 
-	public void setAccountBalance(Double accountBalance) {
-		this.accountBalance = accountBalance;
+	public void setAccountBalance(double i) {
+		this.accountBalance = i;
 	}
 
 
@@ -122,6 +133,9 @@ public class Customer {
 		return "Customer [id=" + id + ", username=" + username + ", password=" + password + ", accountBalance="
 				+ accountBalance + "]";
 	}
+
+
+	
 	
 	
 	

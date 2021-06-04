@@ -14,11 +14,11 @@ public interface GenericRepository<T> {
 	
 	
 	// UPDATE
-	public void update(T change);
+	public boolean update(T change);
 	
 	
 	// DELETE
-	public void delete(T t);
+	public boolean delete(T t);
 	
 	
 }
