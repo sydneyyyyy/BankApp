@@ -13,6 +13,8 @@ public interface GenericRepository<T> {
 	public T getById(Integer id);
 	
 	
+	public T getUser(String username, String password);
+	
 	// UPDATE
 	public boolean update(T change);
 	
