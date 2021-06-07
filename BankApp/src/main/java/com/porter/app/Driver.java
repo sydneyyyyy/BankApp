@@ -23,6 +23,7 @@ public class Driver {
 	private static boolean running = true;
 	private static String userInput;
 	private static User loggedUser;
+	private static User newUser;
 	
 
 
@@ -33,13 +34,18 @@ public class Driver {
 
 	public static void main(String[] args) {
 
-
 		
-		printMainMenu();
+		String mainMenu = "Welcome to the Bank! Please select an option: " +
+				"\n 1. Login " +
+				"\n 2. Signup " +
+				"\n 3. Quit";
+		System.out.println(mainMenu);
+		
+		
 		
 		while (running) {
 			
-//			collectInput();
+			String userInput = collectInput();
 			System.out.println(userInput);
 			switch (userInput) {
 				
@@ -65,7 +71,7 @@ public class Driver {
 						}
 						
 						case "no" : {
-							printMainMenu();
+							System.out.println(mainMenu);
 						}
 					}
 					break;
@@ -76,16 +82,12 @@ public class Driver {
 //		scanner.close();
 	}
 	
-	public static void printMainMenu() {
-		String mainMenu = "Welcome to the Bank! Please select an option: " +
-				"\n 1. Login " +
-				"\n 2. Signup " +
-				"\n 3. Quit";
-		System.out.println(mainMenu);
-		
-		userInput = collectInput();
-		
-	}
+//	public static void printMainMenu() {
+//
+//		
+//		userInput = collectInput();
+//		
+//	}
 	
 	
 	public static void printLoginMenu() {
@@ -112,11 +114,21 @@ public class Driver {
 	}
 	
 	public static void printSignupMenu() {
-
+		newUser = us.signup(scanner);
+		System.out.println(newUser);
+		System.out.println("Thank you for being a part of the Bank community " 
+							+ newUser.getFirstName() + " " + newUser.getLastName());
+//		if (newUser.getType() == "Customer") {
+//			printCustomerMenu();
+//		} else {
+//			printEmployeeMenu();
+//		}
+		
+		printCustomerMenu();
 	}
 	
 	public static void printCustomerMenu() {
-
+		System.out.println("Customer Menu");
 		
 	}
 	

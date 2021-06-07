@@ -1,5 +1,6 @@
 package com.porter.repositories;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,9 +14,32 @@ public class UserDAO implements GenericRepository<User> {
 	private Connection conn = JDBCConnection.getConnection();
 
 	@Override
-	public User add(User t) {
-		// TODO Auto-generated method stub
+	public User addUser(User user) {
+		
+		
+
+		try {
+			String sql = "call add_user(?, ?, ?, ?, ?);";
+			
+			CallableStatement cs = conn.prepareCall(sql);
+			
+//			cs.setInt(1, user.getId());
+			cs.setString(1, user.getUsername());
+			cs.setString(2, user.getPassword());
+			cs.setString(3,  user.getFirstName());
+			cs.setString(4, user.getLastName());
+			cs.setString(5,  user.getType());
+			
+			cs.execute();
+
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return null;
+		
 	}
 
 	@Override
@@ -101,6 +125,12 @@ public class UserDAO implements GenericRepository<User> {
 	public boolean delete(User t) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public User add(User t) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

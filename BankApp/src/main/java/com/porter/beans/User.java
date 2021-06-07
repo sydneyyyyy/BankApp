@@ -97,8 +97,8 @@ public class User {
 
 
 
-	public void setType(String type) {
-		this.type = type;
+	public String setType(String type) {
+		return this.type = type;
 	}
 
 

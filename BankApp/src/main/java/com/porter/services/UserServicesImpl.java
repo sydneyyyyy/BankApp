@@ -24,6 +24,8 @@ public class UserServicesImpl implements UserServices {
 	}
 	
 	
+	
+	
 	@Override
 	public boolean login(User user, String username, String password) {
 		
@@ -40,12 +42,45 @@ public class UserServicesImpl implements UserServices {
 			
 		}
 	}
+	
+	@Override
+	public User signup(Scanner scanner) {
+		User u = new User();
+		u.setType("Customer");
+		System.out.println("Thank you for choosing the Bank!");
+		System.out.println("Please enter a username: ");
+		u.setUsername(scanner.nextLine());
+		System.out.println("Please enter a password: ");
+		u.setPassword(scanner.nextLine());
+		System.out.println("What is your first name?");
+		u.setFirstName(scanner.nextLine());
+		System.out.println("What is your last name?");
+		u.setLastName(scanner.nextLine());
+		udao.addUser(u);
+		return u;
+	}
+
+
+
+
+	@Override
+	public boolean signup(User u, String username, String password) {
+		
+		return false;
+		
+		
+	}
 
 	@Override
 	public User logout(User user) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
+
+
 
 	
 
