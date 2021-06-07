@@ -61,16 +61,6 @@ public class UserServicesImpl implements UserServices {
 	}
 
 
-
-
-	@Override
-	public boolean signup(User u, String username, String password) {
-		
-		return false;
-		
-		
-	}
-
 	@Override
 	public User logout(User user) {
 		// TODO Auto-generated method stub
