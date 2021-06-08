@@ -2,9 +2,10 @@ package com.porter.app;
 
 
 import java.util.Scanner;
-
 import com.porter.beans.User;
 import com.porter.repositories.UserDAO;
+import com.porter.services.AccountServices;
+import com.porter.services.AccountServicesImpl;
 import com.porter.services.UserServices;
 import com.porter.services.UserServicesImpl;
 
@@ -30,6 +31,7 @@ public class Driver {
 	
 	public static Scanner scanner =  new Scanner(System.in);
 	public static UserServices us = new UserServicesImpl();
+	public static AccountServices as = new AccountServicesImpl();
 	public static UserDAO udao = new UserDAO();
 
 	public static void main(String[] args) {
@@ -79,16 +81,9 @@ public class Driver {
 			}
 		}
 		
-//		scanner.close();
 	}
 	
-//	public static void printMainMenu() {
-//
-//		
-//		userInput = collectInput();
-//		
-//	}
-	
+
 	
 	public static void printLoginMenu() {
 		loggedUser = us.login(scanner);
@@ -118,20 +113,70 @@ public class Driver {
 		System.out.println(newUser);
 		System.out.println("Thank you for being a part of the Bank community " 
 							+ newUser.getFirstName() + " " + newUser.getLastName());
-//		if (newUser.getType() == "Customer") {
-//			printCustomerMenu();
-//		} else {
-//			printEmployeeMenu();
-//		}
 		
 		printCustomerMenu();
-	}
-	
-	public static void printCustomerMenu() {
-		System.out.println("Customer Menu");
 		
 	}
 	
+	/*
+	 * apply for an account
+	 * view balance of account
+	 * withdrawal
+	 * deposit
+	 * transfer money (accept or decline)
+	 * */
+	public static void printCustomerMenu() {
+		String customerMenu = "\nHello, " + loggedUser.getFirstName() + ". What would you like to do first?" +
+								"\n" + "1. Open a Bank Account" +
+								"\n" + "2. View Account Balances" + 
+								"\n" + "3. Transactions" +
+								"\n" + "4. Logout";
+		
+		System.out.println(customerMenu);
+		
+		customerMenuInput(collectInput());
+		
+		
+								
+		
+	}
+	
+	public static void customerMenuInput(String input) {
+		
+		if (input != null) {
+			
+			switch (input) {
+				case "1" : {
+					as.openAccount(scanner, loggedUser);
+//					printCustomerMenu();
+					break;
+				} 
+				
+				case "2" : {
+					as.getAllUserAccounts(loggedUser.getId());
+					printCustomerMenu();
+					break;
+				}
+				
+				case "3" : {
+					printTransactionMenu();
+				}
+			}
+			
+			printCustomerMenu();
+		}
+	}
+	
+	public static void printTransactionMenu() {
+		String transactionMenu = "Please select an option below." +
+				"\n 1. Deposit Money" +
+				"\n 2. Make a Withdrawal" +
+				"\n 3. View all Transactions";
+		System.out.println(transactionMenu);
+	
+	}
+	
+
 	public static void printEmployeeMenu() {
 		
 	}

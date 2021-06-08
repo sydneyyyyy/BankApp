@@ -6,7 +6,7 @@ public class Account {
 	private Integer accountNumber;
 	private Double balance;
 	private String type;
-	private boolean approved;
+	private Integer userId;
 	
 	
 	// Constructors
@@ -15,12 +15,11 @@ public class Account {
 	}
 
 
-	public Account(Integer id, Double balance, String type, boolean approved) {
+	public Account(Integer id, Double balance, String type) {
 		super();
 		this.id = id;
 		this.balance = balance;
 		this.type = type;
-		this.approved = approved;
 	}
 	
 	
@@ -30,7 +29,6 @@ public class Account {
 		this.accountNumber = accountNumber;
 		this.balance = balance;
 		this.type = type;
-		this.approved = approved;
 	}
 
 
@@ -76,20 +74,20 @@ public class Account {
 	}
 
 
-	public boolean isApproved() {
-		return approved;
+	public Integer getUserId() {
+		return userId;
 	}
 
 
-	public void setApproved(boolean approved) {
-		this.approved = approved;
+	public Integer setUserId(Integer userId) {
+		return this.userId = userId;
 	}
 
 
 	@Override
 	public String toString() {
 		return "Account [id=" + id + ", accountNumber=" + accountNumber + ", balance=" + balance + ", type=" + type
-				+ ", approved=" + approved + "]";
+				+ ", userId=" + userId + "]";
 	}
 
 
@@ -98,10 +96,10 @@ public class Account {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((accountNumber == null) ? 0 : accountNumber.hashCode());
-		result = prime * result + (approved ? 1231 : 1237);
 		result = prime * result + ((balance == null) ? 0 : balance.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -120,8 +118,6 @@ public class Account {
 				return false;
 		} else if (!accountNumber.equals(other.accountNumber))
 			return false;
-		if (approved != other.approved)
-			return false;
 		if (balance == null) {
 			if (other.balance != null)
 				return false;
@@ -136,6 +132,11 @@ public class Account {
 			if (other.type != null)
 				return false;
 		} else if (!type.equals(other.type))
+			return false;
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
 	}

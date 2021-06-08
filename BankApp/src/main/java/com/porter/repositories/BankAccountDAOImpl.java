@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import com.porter.beans.Account;
-import com.porter.beans.User;
 import com.porter.utils.JDBCConnection;
 
 
@@ -18,22 +17,23 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 	public static UserDAO udao = new UserDAO();
 	
 
+
 	@Override
-	public boolean createAccount(User user) {
+	public Account createAccount(Account acct) {
 		
 		try {
-			
+
 			String sql = "call create_account(?, ?, ?, ?);";
 			
 			CallableStatement cs = conn.prepareCall(sql);
 			
-			cs.setString(1, Integer.toString(user.getId()));
+			cs.setInt(1, acct.getAccountNumber());
+			cs.setDouble(2, acct.getBalance());
+			cs.setString(3, acct.getType());
+			cs.setInt(4, acct.getUserId());
 			
-			boolean success = cs.execute();
+			cs.execute();
 			
-			if (success) {
-				return success;
-			}
 			
 		} catch (SQLException e) {
 			
@@ -41,7 +41,7 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 			
 		}
 		
-		return false;
+		return null;
 	}
 
 	@Override
@@ -103,15 +103,15 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 	}
 
 	@Override
-	public List<Account> getAllUserAccounts() {
+	public List<Account> getAllUserAccounts(Integer i) {
 		
 		List<Account> accounts = new ArrayList<Account>();
 		
+		String sql = "select * from accounts where userId = ?;";
 		try {
 			
-			String sql = "select * from accounts where userId = ?;";
-			
 			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, i);
 			
 			ResultSet rs = ps.executeQuery();
 			

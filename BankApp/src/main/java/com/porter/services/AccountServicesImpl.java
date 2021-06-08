@@ -2,6 +2,7 @@ package com.porter.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import com.porter.beans.Account;
 import com.porter.beans.User;
@@ -13,20 +14,47 @@ public class AccountServicesImpl implements AccountServices {
 	public BankAccountDAO bdao = new BankAccountDAOImpl();
 
 	@Override
-	public boolean openAccount(User user) {
-		boolean success = bdao.createAccount(user);
-		return success;
+	public Account openAccount(Scanner scanner, User u) {
+		Account a = new Account();
+		a.setUserId(u.getId());
+		System.out.println("Please enter a Account Number");
+		a.setAccountNumber(scanner.nextInt());
+		System.out.println("Please enter a starting balance: ");
+		a.setBalance(scanner.nextDouble());
+		System.out.println("Please select what type of account you are creating.." +
+							"\n Checking " +
+							"\n Savings ");
+		a.setType(scanner.nextLine());
+		
+//		switch (type) {
+//		
+//			case "Checking" : {
+//				a.setType("Checking");
+//				break;
+//			}
+//			
+//			case "Savings" : {
+//				a.setType("Savings");
+//				break;
+//			}
+//			
+//		}
+		
+		
+		bdao.createAccount(a);
+		return a;
 	}
 	
 	@Override
-	public List<Account> getAllUserAccounts() {
+	public List<Account> getAllUserAccounts(Integer i) {
 		List<Account> userAccounts = new ArrayList<Account>();
-		userAccounts = bdao.getAllUserAccounts();
-		System.out.println("--------------- Your Accounts -------------------");
-		System.out.println("Account Number ------------ Balance ------------ Type");
+		userAccounts = bdao.getAllUserAccounts(i);
 		
-		for (Account a : userAccounts) {
-			System.out.println(a.getAccountNumber() + "              " + a.getBalance() + "              " + a.getType());
+		System.out.println("--------------- Your Accounts -------------------");
+		System.out.println("Account Number -- Balance ------------ Type");
+		
+		for (Account acct : userAccounts) {
+			System.out.println(acct.getAccountNumber() + "              " + acct.getBalance() + "                " + acct.getType());
 		}
 		
 		return userAccounts;
@@ -42,7 +70,9 @@ public class AccountServicesImpl implements AccountServices {
 
 	@Override
 	public List<Account> getAllAccountBalances() {
-		return bdao.getAllAccountBalances();
+		List<Account> allAccountBalances = new ArrayList<Account>();
+		allAccountBalances = bdao.getAllAccountBalances();
+		return allAccountBalances;
 	}
 
 }

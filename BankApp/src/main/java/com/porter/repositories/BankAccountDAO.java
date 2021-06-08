@@ -1,23 +1,26 @@
 package com.porter.repositories;
 
 import java.util.List;
-
 import com.porter.beans.Account;
-import com.porter.beans.User;
+
 
 public interface BankAccountDAO {
 
-	public boolean createAccount(User user);
+//	public boolean createAccount(Account a);
 	
 	public List<Account> getAllAccounts();
 	
 	public Account updateAccount(Account a);
 	
-	public List<Account> getAllUserAccounts();
+	public List<Account> getAllUserAccounts(Integer i);
 	
 	public boolean deleteAccount(Account a);
 	
 	public List<Account> getAllAccountBalances();
+
+//	Account createAccount(Account a, Integer acctNum, Double balance, String type, Integer userId);
+
+	Account createAccount(Account acct);
 
 
 }
