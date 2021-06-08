@@ -148,12 +148,14 @@ public class Driver {
 			switch (input) {
 				case "1" : {
 					as.openAccount(scanner, loggedUser);
-//					printCustomerMenu();
+					
+					printCustomerMenu();
 					break;
 				} 
 				
 				case "2" : {
 					as.getAllUserAccounts(loggedUser.getId());
+					
 					printCustomerMenu();
 					break;
 				}
@@ -163,12 +165,11 @@ public class Driver {
 				}
 			}
 			
-			printCustomerMenu();
 		}
 	}
 	
 	public static void printTransactionMenu() {
-		String transactionMenu = "Please select an option below." +
+		String transactionMenu = "\nPlease select an option below." +
 				"\n 1. Deposit Money" +
 				"\n 2. Make a Withdrawal" +
 				"\n 3. View all Transactions";

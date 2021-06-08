@@ -23,12 +23,23 @@ public class Account {
 	}
 	
 	
-	public Account(Integer id, Integer accountNumber, Double balance, String type, boolean approved) {
+	public Account(Integer id, Integer accountNumber, Double balance, String type) {
 		super();
 		this.id = id;
 		this.accountNumber = accountNumber;
 		this.balance = balance;
 		this.type = type;
+	}
+	
+	
+
+	public Account(Integer id, Integer accountNumber, Double balance, String type, Integer userId) {
+		super();
+		this.id = id;
+		this.accountNumber = accountNumber;
+		this.balance = balance;
+		this.type = type;
+		this.userId = userId;
 	}
 
 

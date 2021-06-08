@@ -21,10 +21,11 @@ public class AccountServicesImpl implements AccountServices {
 		a.setAccountNumber(scanner.nextInt());
 		System.out.println("Please enter a starting balance: ");
 		a.setBalance(scanner.nextDouble());
-		System.out.println("Please select what type of account you are creating.." +
-							"\n Checking " +
-							"\n Savings ");
-		a.setType(scanner.nextLine());
+		// NOT CURRENTLY WORKING
+//		System.out.println("Please select what type of account you are creating.." +
+//							"\n Checking " +
+//							"\n Savings ");
+//		a.setType(scanner.nextLine());
 		
 //		switch (type) {
 //		
