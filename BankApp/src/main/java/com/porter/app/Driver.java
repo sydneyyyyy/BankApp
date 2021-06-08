@@ -6,6 +6,8 @@ import com.porter.beans.User;
 import com.porter.repositories.UserDAO;
 import com.porter.services.AccountServices;
 import com.porter.services.AccountServicesImpl;
+import com.porter.services.TransactionServices;
+import com.porter.services.TransactionServicesImpl;
 import com.porter.services.UserServices;
 import com.porter.services.UserServicesImpl;
 
@@ -32,8 +34,12 @@ public class Driver {
 	public static Scanner scanner =  new Scanner(System.in);
 	public static UserServices us = new UserServicesImpl();
 	public static AccountServices as = new AccountServicesImpl();
+	public static TransactionServices ts = new TransactionServicesImpl();
+	
+	// do i need to make this separate from driver???
 	public static UserDAO udao = new UserDAO();
 
+	
 	public static void main(String[] args) {
 
 		
@@ -162,10 +168,16 @@ public class Driver {
 				
 				case "3" : {
 					printTransactionMenu();
+					break;
+				}
+				
+				default : {
+					System.out.println("Please make a valid selection.");
+					// print out customer menu again????
 				}
 			}
 			
-		}
+		} 
 	}
 	
 	public static void printTransactionMenu() {
@@ -174,7 +186,22 @@ public class Driver {
 				"\n 2. Make a Withdrawal" +
 				"\n 3. View all Transactions";
 		System.out.println(transactionMenu);
+		transactionMenuInput(collectInput());
+	}
 	
+	public static void transactionMenuInput(String input) {
+		
+		if (input != null) {
+			
+			switch (input) {
+			
+			case "1" : {
+				ts.makeDeposit(scanner, loggedUser);
+			}
+			
+			}
+		}
+		
 	}
 	
 

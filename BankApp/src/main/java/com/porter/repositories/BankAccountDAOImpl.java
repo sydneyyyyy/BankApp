@@ -83,15 +83,16 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 		
 		try {
 			
-			String sql = "update accounts set accountNumber = ?, balance = ?, type = ? where id = ?;";
+			String sql = "update accounts set balance = ? where accountNumber = ?;";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
-			ps.setInt(1, a.getAccountNumber());
-			ps.setDouble(2, a.getBalance());
-			ps.setString(3, a.getType());
+			ps.setDouble(1, a.getBalance());
+			ps.setInt(2, a.getAccountNumber());
 			
 			ps.execute();
+			
+			return a;
 			
 		} catch (SQLException e) {
 			
@@ -184,6 +185,40 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 			}
 			
 			return accounts;
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+		return null;
+	}
+
+	@Override
+	public Account getAccountByAccountNumber(int accountNumber) {
+		
+		String sql = "select * from accounts where accountnumber = ?;";
+		
+		try {
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, accountNumber);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				
+				Account a = new Account();
+				
+				a.setId(rs.getInt("id"));
+				a.setAccountNumber(rs.getInt("accountNumber"));
+				a.setBalance(rs.getDouble("balance"));
+				a.setType(rs.getString("type"));
+				a.setUserId(rs.getInt("userId"));
+				
+				return a;
+			}
 			
 		} catch (SQLException e) {
 			
