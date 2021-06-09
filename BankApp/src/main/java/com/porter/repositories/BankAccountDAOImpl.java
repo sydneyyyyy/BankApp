@@ -23,13 +23,12 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 		
 		try {
 
-			String sql = "call create_account(?, ?, ?, ?);";
+			String sql = "call create_account(?, ?, ?);";
 			
 			CallableStatement cs = conn.prepareCall(sql);
 			
 			cs.setInt(1, acct.getAccountNumber());
 			cs.setDouble(2, acct.getBalance());
-			cs.setString(3, acct.getType());
 			cs.setInt(4, acct.getUserId());
 			
 			cs.execute();
@@ -51,7 +50,7 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 		
 		try {
 			
-			String sql = "select * from accounts order by id;";
+			String sql = "select * from accounts order by accountId;";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
@@ -59,10 +58,9 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 			
 			while (rs.next()) {
 				Account a = new Account();
-				a.setId(rs.getInt("id"));
+				a.setAccountId(rs.getInt("accountId"));
 				a.setAccountNumber(rs.getInt("accountNumber"));
 				a.setBalance(rs.getDouble("balance"));
-				a.setType(rs.getString("type"));
 				
 				accounts.add(a);
 			}
@@ -118,10 +116,9 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 			
 			while (rs.next()) {
 				Account a = new Account();
-				a.setId(rs.getInt("id"));
+				a.setAccountId(rs.getInt("accountId"));
 				a.setAccountNumber(rs.getInt("accountNumber"));
 				a.setBalance(rs.getDouble("balance"));
-				a.setType(rs.getString("type"));
 				
 				accounts.add(a);
 			}
@@ -140,12 +137,12 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 	@Override
 	public boolean deleteAccount(Account a) {
 		
-		String sql = "delete from accounts where id = ?;";
+		String sql = "delete from accounts where accountId = ?;";
 		
 		try {
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, a.getId());
+			ps.setInt(1, a.getAccountId());
 			
 			boolean success = ps.execute();
 			
@@ -169,7 +166,7 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 		
 		try {
 			
-			String sql = "select * from accounts where id = ?;";
+			String sql = "select * from accounts where accountId = ?;";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
@@ -177,7 +174,7 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 			
 			while (rs.next()) {
 				Account a = new Account();
-				ps.setInt(1, a.getId());
+				ps.setInt(1, a.getAccountId());
 				ps.setDouble(2, a.getBalance());
 				
 				accounts.add(a);
@@ -211,10 +208,9 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 				
 				Account a = new Account();
 				
-				a.setId(rs.getInt("id"));
+				a.setAccountId(rs.getInt("accountId"));
 				a.setAccountNumber(rs.getInt("accountNumber"));
 				a.setBalance(rs.getDouble("balance"));
-				a.setType(rs.getString("type"));
 				a.setUserId(rs.getInt("userId"));
 				
 				return a;

@@ -21,41 +21,22 @@ public class AccountServicesImpl implements AccountServices {
 		a.setAccountNumber(scanner.nextInt());
 		System.out.println("Please enter a starting balance: ");
 		a.setBalance(scanner.nextDouble());
-		// NOT CURRENTLY WORKING
-//		System.out.println("Please select what type of account you are creating.." +
-//							"\n Checking " +
-//							"\n Savings ");
-//		a.setType(scanner.nextLine());
-		
-//		switch (type) {
-//		
-//			case "Checking" : {
-//				a.setType("Checking");
-//				break;
-//			}
-//			
-//			case "Savings" : {
-//				a.setType("Savings");
-//				break;
-//			}
-//			
-//		}
-		
 		
 		bdao.createAccount(a);
 		return a;
 	}
+
 	
 	@Override
 	public List<Account> getAllUserAccounts(Integer i) {
 		List<Account> userAccounts = new ArrayList<Account>();
 		userAccounts = bdao.getAllUserAccounts(i);
 		
-		System.out.println("--------------- Your Accounts -------------------");
-		System.out.println("Account Number -- Balance ------------ Type");
+		System.out.println("\n--------------- Your Accounts -------------------");
+		System.out.println("Account Number -- Balance");
 		
 		for (Account acct : userAccounts) {
-			System.out.println(acct.getAccountNumber() + "              " + acct.getBalance() + "                " + acct.getType());
+			System.out.println(acct.getAccountNumber() + "              " + acct.getBalance());
 		}
 		
 		return userAccounts;
@@ -66,6 +47,13 @@ public class AccountServicesImpl implements AccountServices {
 	public List<Account> getAllAccounts() {
 		List<Account> allAccounts = new ArrayList<Account>();
 		allAccounts = bdao.getAllAccounts();
+		
+		System.out.println("\n---------- User Accounts ----------");
+		System.out.println("Account Number ---- Account Balance");
+		
+		for (Account a : allAccounts) {
+			System.out.println(a.getAccountNumber() + "               " + a.getBalance());
+		}
 		return allAccounts;
 	}
 

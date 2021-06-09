@@ -2,6 +2,8 @@ package com.porter.app;
 
 
 import java.util.Scanner;
+
+import com.porter.beans.Account;
 import com.porter.beans.User;
 import com.porter.repositories.UserDAO;
 import com.porter.services.AccountServices;
@@ -27,6 +29,7 @@ public class Driver {
 	private static String userInput;
 	private static User loggedUser;
 	private static User newUser;
+	private static Account currentAccount;
 	
 
 
@@ -35,6 +38,7 @@ public class Driver {
 	public static UserServices us = new UserServicesImpl();
 	public static AccountServices as = new AccountServicesImpl();
 	public static TransactionServices ts = new TransactionServicesImpl();
+	
 	
 	// do i need to make this separate from driver???
 	public static UserDAO udao = new UserDAO();
@@ -184,7 +188,8 @@ public class Driver {
 		String transactionMenu = "\nPlease select an option below." +
 				"\n 1. Deposit Money" +
 				"\n 2. Make a Withdrawal" +
-				"\n 3. View all Transactions";
+				"\n 3. Transfer Money" +
+				"\n 4. View Transactions";
 		System.out.println(transactionMenu);
 		transactionMenuInput(collectInput());
 	}
@@ -197,6 +202,38 @@ public class Driver {
 			
 			case "1" : {
 				ts.makeDeposit(scanner, loggedUser);
+				break;
+			}
+			
+			case "2" : {
+				ts.makeWithdrawal(scanner, loggedUser);
+				break;
+			}
+			
+			case "3" : {
+				ts.makeTransfer(scanner, loggedUser);
+				break;
+			}
+			
+			case "4" : {
+				System.out.println("\nWould you like to...." + 
+									"\n 1. View all transactions" +
+									"\n 2. View transactions for one of your accounts");
+				String userInput = collectInput();
+				
+				switch (userInput) {
+				
+					case "1" : {
+						ts.viewAllUserTransactions(loggedUser);
+						break;
+					}
+					
+					case "2" : {
+						ts.viewAllAccountTransactions(loggedUser, currentAccount);
+						break;
+					}
+				}
+				
 			}
 			
 			}
@@ -207,6 +244,42 @@ public class Driver {
 
 	public static void printEmployeeMenu() {
 		
+		String employeeMenu = "\nHello " + loggedUser.getFirstName() + ", what would you like to do first?" +
+								"\n1. View User Bank Accounts" + 
+								"\n2. View Bank Transactions" +
+								"\n3. View Pending Accounts";
+		System.out.println(employeeMenu);
+		employeeMenu(collectInput());
+		
+	}
+	
+	public static void employeeMenu(String input) {
+		
+		if (input != null) {
+	
+			switch (input) {
+			
+				case "1" : {
+					as.getAllAccounts();
+					printEmployeeMenu();
+					break;
+				}
+				
+				case "2" : {
+					ts.viewAllTransactions();
+					printEmployeeMenu();
+					break;
+				}
+				
+				default : {
+					System.out.println("Please make a selection!");
+					printEmployeeMenu();
+				}
+			}
+			
+			
+		} 
+	 
 	}
 	
 	private static String collectInput() {

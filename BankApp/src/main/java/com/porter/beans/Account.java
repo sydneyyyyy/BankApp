@@ -2,10 +2,10 @@ package com.porter.beans;
 
 public class Account {
 
-	private Integer id;
+	private Integer accountId;
 	private Integer accountNumber;
 	private Double balance;
-	private String type;
+//	private String type;
 	private Integer userId;
 	
 	
@@ -15,42 +15,39 @@ public class Account {
 	}
 
 
-	public Account(Integer id, Double balance, String type) {
+	public Account(Integer accountId, Double balance, String type) {
 		super();
-		this.id = id;
+		this.accountId = accountId;
 		this.balance = balance;
-		this.type = type;
 	}
 	
 	
-	public Account(Integer id, Integer accountNumber, Double balance, String type) {
+	public Account(Integer accountId, Integer accountNumber, Double balance) {
 		super();
-		this.id = id;
+		this.accountId = accountId;
 		this.accountNumber = accountNumber;
 		this.balance = balance;
-		this.type = type;
 	}
 	
 	
 
-	public Account(Integer id, Integer accountNumber, Double balance, String type, Integer userId) {
+	public Account(Integer accountId, Integer accountNumber, Double balance, Integer userId) {
 		super();
-		this.id = id;
+		this.accountId = accountId;
 		this.accountNumber = accountNumber;
 		this.balance = balance;
-		this.type = type;
 		this.userId = userId;
 	}
 
 
 	// Getters and Setters
-	public Integer getId() {
-		return id;
+	public Integer getAccountId() {
+		return accountId;
 	}
 
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
 	}
 	
 	
@@ -75,14 +72,14 @@ public class Account {
 	}
 
 
-	public String getType() {
-		return type;
-	}
-
-
-	public void setType(String type) {
-		this.type = type;
-	}
+//	public String getType() {
+//		return type;
+//	}
+//
+//
+//	public void setType(String type) {
+//		this.type = type;
+//	}
 
 
 	public Integer getUserId() {
@@ -97,8 +94,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", accountNumber=" + accountNumber + ", balance=" + balance + ", type=" + type
-				+ ", userId=" + userId + "]";
+		return "Account [accountId=" + accountId + ", accountNumber=" + accountNumber + ", balance=" + balance + ", userId=" + userId + "]";
 	}
 
 
@@ -108,8 +104,7 @@ public class Account {
 		int result = 1;
 		result = prime * result + ((accountNumber == null) ? 0 : accountNumber.hashCode());
 		result = prime * result + ((balance == null) ? 0 : balance.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + ((accountId == null) ? 0 : accountId.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
@@ -134,15 +129,10 @@ public class Account {
 				return false;
 		} else if (!balance.equals(other.balance))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+		if (accountId == null) {
+			if (other.accountId != null)
 				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (type == null) {
-			if (other.type != null)
-				return false;
-		} else if (!type.equals(other.type))
+		} else if (!accountId.equals(other.accountId))
 			return false;
 		if (userId == null) {
 			if (other.userId != null)
