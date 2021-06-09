@@ -135,8 +135,8 @@ public class UserDAO implements GenericRepository<User> {
 				u.setId(rs.getInt("id"));
 				u.setUsername(rs.getString("username"));
 				u.setPassword(rs.getString("password"));
-				u.setFirstName(rs.getString("first name"));
-				u.setLastName(rs.getString("last name"));
+				u.setFirstName(rs.getString("firstName"));
+				u.setLastName(rs.getString("lastName"));
 				u.setType(rs.getString("type"));
 				
 				// return user

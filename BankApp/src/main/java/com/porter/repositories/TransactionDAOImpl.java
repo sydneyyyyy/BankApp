@@ -32,7 +32,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 			cs.setString(2, t.getTransactionType());
 			cs.setDouble(3, t.getTransactionAmount());
 			cs.setDouble(4, t.getAccountBalance());
-			cs.setInt(5, t.getAccountId());
+			cs.setInt(5, t.getUserId());
 			
 			cs.execute();
 			
@@ -114,7 +114,36 @@ public class TransactionDAOImpl implements TransactionDAO {
 
 	@Override
 	public List<Transaction> getAllTransactions() {
-		// TODO Auto-generated method stub
+		
+		List<Transaction> allTr = new ArrayList<Transaction>();
+		
+		try {
+			
+			String sql = "select * from transactions;";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Transaction t = new Transaction();
+				t.setTransactionId(rs.getInt("transactionId"));
+				t.setAccountNumber(rs.getInt("accountNumber"));
+				t.setTransactionType(rs.getString("transactionType"));
+				t.setTransactionAmount(rs.getDouble("transactionAmount"));
+				t.setAccountBalance(rs.getDouble("accountBalance"));
+				t.setUserId(rs.getInt("userId"));
+				
+				allTr.add(t);
+		
+			}
+			
+			return allTr;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 

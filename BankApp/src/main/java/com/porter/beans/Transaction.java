@@ -8,7 +8,7 @@ public class Transaction {
 	private String transactionType;
 	private double transactionAmount;
 	private double accountBalance;
-	private int accountId;
+	private int userId;
 	
 	public Transaction() {
 		super();
@@ -61,19 +61,19 @@ public class Transaction {
 		this.accountBalance = accountBalance;
 	}
 
-	public int getAccountId() {
-		return accountId;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setAccountId(int accountId) {
-		this.accountId = accountId;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	@Override
 	public String toString() {
 		return "Transaction [transactionId=" + transactionId + ", accountNumber=" + accountNumber + ", transactionType="
 				+ transactionType + ", transactionAmount=" + transactionAmount + ", accountBalance=" + accountBalance
-				+ ", accountId=" + accountId + "]";
+				+ ", userId=" + userId + "]";
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class Transaction {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + transactionId;
 		result = prime * result + ((transactionType == null) ? 0 : transactionType.hashCode());
-		result = prime * result + accountId;
+		result = prime * result + userId;
 		return result;
 	}
 
@@ -114,7 +114,7 @@ public class Transaction {
 				return false;
 		} else if (!transactionType.equals(other.transactionType))
 			return false;
-		if (accountId != other.accountId)
+		if (userId != other.userId)
 			return false;
 		return true;
 	}

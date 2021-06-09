@@ -2,7 +2,6 @@ package com.porter.app;
 
 
 import java.util.Scanner;
-
 import com.porter.beans.Account;
 import com.porter.beans.User;
 import com.porter.repositories.UserDAO;
@@ -12,6 +11,7 @@ import com.porter.services.TransactionServices;
 import com.porter.services.TransactionServicesImpl;
 import com.porter.services.UserServices;
 import com.porter.services.UserServicesImpl;
+import com.porter.utils.AppLogger;
 
 
 
@@ -33,6 +33,7 @@ public class Driver {
 	
 
 
+
 	
 	public static Scanner scanner =  new Scanner(System.in);
 	public static UserServices us = new UserServicesImpl();
@@ -50,10 +51,10 @@ public class Driver {
 		String mainMenu = "Welcome to the Bank! Please select an option: " +
 				"\n 1. Login " +
 				"\n 2. Signup " +
-				"\n 3. Quit";
+				"\n 3. Quit\n";
 		System.out.println(mainMenu);
 		
-		
+		AppLogger.logger.info("Program Started");
 		
 		while (running) {
 			
@@ -79,6 +80,7 @@ public class Driver {
 					
 						case "yes" : {
 							System.out.println("Goodbye!");
+							AppLogger.logger.info("Program ended");
 							break;
 						}
 						
@@ -100,7 +102,7 @@ public class Driver {
 		if (loggedUser == null) {
 			System.out.println("Invalid Credentials!");
 		} else {
-			System.out.println("Login successful. You are logged in as: " + loggedUser.getFirstName() + " " + loggedUser.getLastName());
+			System.out.println("\nLogin successful. You are logged in as: " + loggedUser.getFirstName() + " " + loggedUser.getLastName());
 			
 			switch (loggedUser.getType()) {
 				
@@ -128,13 +130,7 @@ public class Driver {
 		
 	}
 	
-	/*
-	 * apply for an account
-	 * view balance of account
-	 * withdrawal
-	 * deposit
-	 * transfer money (accept or decline)
-	 * */
+
 	public static void printCustomerMenu() {
 		String customerMenu = "\nHello, " + loggedUser.getFirstName() + ". What would you like to do first?" +
 								"\n" + "1. Open a Bank Account" +
@@ -175,6 +171,11 @@ public class Driver {
 					break;
 				}
 				
+				case "4" : {
+					us.logout(loggedUser);
+					System.out.println("Logout successful!");
+				}
+				
 				default : {
 					System.out.println("Please make a valid selection.");
 					// print out customer menu again????
@@ -190,6 +191,7 @@ public class Driver {
 				"\n 2. Make a Withdrawal" +
 				"\n 3. Transfer Money" +
 				"\n 4. View Transactions";
+
 		System.out.println(transactionMenu);
 		transactionMenuInput(collectInput());
 	}
@@ -202,16 +204,19 @@ public class Driver {
 			
 			case "1" : {
 				ts.makeDeposit(scanner, loggedUser);
+				printCustomerMenu();
 				break;
 			}
 			
 			case "2" : {
 				ts.makeWithdrawal(scanner, loggedUser);
+				printCustomerMenu();
 				break;
 			}
 			
 			case "3" : {
 				ts.makeTransfer(scanner, loggedUser);
+				printCustomerMenu();
 				break;
 			}
 			
@@ -225,11 +230,13 @@ public class Driver {
 				
 					case "1" : {
 						ts.viewAllUserTransactions(loggedUser);
+						printCustomerMenu();
 						break;
 					}
 					
 					case "2" : {
 						ts.viewAllAccountTransactions(loggedUser, currentAccount);
+						printCustomerMenu();
 						break;
 					}
 				}
@@ -244,10 +251,11 @@ public class Driver {
 
 	public static void printEmployeeMenu() {
 		
-		String employeeMenu = "\nHello " + loggedUser.getFirstName() + ", what would you like to do first?" +
+		String employeeMenu = "\n\nHello " + loggedUser.getFirstName() + ", what would you like to do first?" +
 								"\n1. View User Bank Accounts" + 
 								"\n2. View Bank Transactions" +
-								"\n3. View Pending Accounts";
+								"\n3. View Pending Accounts" +
+								"\n4. Logout";
 		System.out.println(employeeMenu);
 		employeeMenu(collectInput());
 		
@@ -269,6 +277,15 @@ public class Driver {
 					ts.viewAllTransactions();
 					printEmployeeMenu();
 					break;
+				}
+				
+				case "3" : {
+					
+				}
+				
+				case "4" : {
+					us.logout(loggedUser);
+					System.out.println("Logout Successful!");
 				}
 				
 				default : {

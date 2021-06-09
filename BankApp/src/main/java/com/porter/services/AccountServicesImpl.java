@@ -8,6 +8,7 @@ import com.porter.beans.Account;
 import com.porter.beans.User;
 import com.porter.repositories.BankAccountDAO;
 import com.porter.repositories.BankAccountDAOImpl;
+import com.porter.utils.AppLogger;
 
 public class AccountServicesImpl implements AccountServices {
 	
@@ -23,6 +24,7 @@ public class AccountServicesImpl implements AccountServices {
 		a.setBalance(scanner.nextDouble());
 		
 		bdao.createAccount(a);
+		AppLogger.logger.info(u.getFirstName() + " has created account " + a.getAccountNumber() + "!");
 		return a;
 	}
 

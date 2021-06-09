@@ -11,6 +11,7 @@ import com.porter.repositories.BankAccountDAO;
 import com.porter.repositories.BankAccountDAOImpl;
 import com.porter.repositories.TransactionDAO;
 import com.porter.repositories.TransactionDAOImpl;
+import com.porter.utils.AppLogger;
 
 public class TransactionServicesImpl implements TransactionServices {
 
@@ -40,6 +41,7 @@ public class TransactionServicesImpl implements TransactionServices {
 		
 		acctNum.setBalance(accountBalance);
 		bdao.updateAccount(acctNum);
+		AppLogger.logger.info(u.getFirstName() + " " + u.getLastName() + " made a deposit to " + acctNum.getAccountNumber());
 		
 		return acctNum;
 	}
@@ -64,6 +66,7 @@ public class TransactionServicesImpl implements TransactionServices {
 			acctNum.setBalance(accountBalance);
 			bdao.updateAccount(acctNum);
 			System.out.println(acctNum);
+			AppLogger.logger.info(u.getFirstName() + " " + u.getLastName() + " made a withdrawal from " + acctNum.getAccountNumber());
 		}
 		
 		
@@ -102,7 +105,7 @@ public class TransactionServicesImpl implements TransactionServices {
 			secondAccountNum.setBalance(accountBalance);
 			bdao.updateAccount(secondAccountNum);
 			System.out.println(secondAccountNum);
-			
+			AppLogger.logger.info(u.getFirstName() + " " + u.getLastName() + " transfered money from " + firstAccountNum.getAccountNumber() + " to " + secondAccountNum.getAccountNumber());
 		}
 		
 		return firstAccountNum;
@@ -153,8 +156,22 @@ public class TransactionServicesImpl implements TransactionServices {
 	@Override
 	public List<Transaction> viewAllTransactions() {
 		
-		// view all transactions similar to above
-		return null;
+		List<Transaction> allTr = new ArrayList<Transaction>();
+		allTr = tdao.getAllTransactions();
+		
+		System.out.println("\n----------------------------------- Transactions --------------------------------------");
+		System.out.println("Id ---- Account Number ---- Transaction ---- Amount ----- Account Balance ---- User Id");
+	
+		for (Transaction t: allTr) {
+			System.out.println(t.getTransactionId() + "       " +
+								t.getAccountNumber() + "               " +
+								t.getTransactionType() + "           " +
+								t.getTransactionAmount() + "         " +
+								t.getAccountBalance() + "               " +
+								t.getUserId());
+		}
+		
+		return allTr;
 	}
 
 }

@@ -1,0 +1,14 @@
+INFO  | 2021-06-09 13:52:17 | [main] app.Driver (Driver.java:60) - Program Started
+INFO  | 2021-06-09 13:53:54 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-09 13:55:09 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - User has logged in.
+INFO  | 2021-06-09 13:55:24 | [main] services.TransactionServicesImpl (TransactionServicesImpl.java:44) - Jane Doe made a deposit to 10002
+INFO  | 2021-06-09 14:12:01 | [main] app.Driver (Driver.java:57) - 
+Program Started
+INFO  | 2021-06-09 14:12:11 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Jane Doe has logged in.
+INFO  | 2021-06-09 14:12:17 | [main] services.UserServicesImpl (UserServicesImpl.java:74) - Jane Doe has logged out.
+INFO  | 2021-06-09 14:13:25 | [main] app.Driver (Driver.java:57) - 
+Program Started
+INFO  | 2021-06-09 14:14:11 | [main] app.Driver (Driver.java:57) - 
+Program Started
+INFO  | 2021-06-09 14:14:17 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Jane Doe has logged in.
+INFO  | 2021-06-09 14:14:21 | [main] services.UserServicesImpl (UserServicesImpl.java:74) - Jane Doe has logged out.

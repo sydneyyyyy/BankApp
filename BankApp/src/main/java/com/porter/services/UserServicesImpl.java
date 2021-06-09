@@ -4,6 +4,7 @@ package com.porter.services;
 import java.util.Scanner;
 import com.porter.beans.User;
 import com.porter.repositories.UserDAO;
+import com.porter.utils.AppLogger;
 
 
 
@@ -18,7 +19,9 @@ public class UserServicesImpl implements UserServices {
 		System.out.println("Please enter a password: ");
 		String password = scanner.nextLine();
 		
-		return udao.getUser(username, password);
+		User u = udao.getUser(username, password);
+		AppLogger.logger.info(u.getFirstName() + " " + u.getLastName() + " has logged in.");
+		return u;
 		
 		
 	}
@@ -57,14 +60,20 @@ public class UserServicesImpl implements UserServices {
 		System.out.println("What is your last name?");
 		u.setLastName(scanner.nextLine());
 		udao.addUser(u);
+		
+		AppLogger.logger.info(u.getFirstName() + " " + u.getLastName() + " has joined the Bank.");
 		return u;
 	}
 
 
 	@Override
 	public User logout(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		User loggedUser = udao.getById(user.getId());
+		loggedUser = null;
+		
+		AppLogger.logger.info(user.getFirstName() + " " + user.getLastName() + " has logged out.");
+		
+		return loggedUser;
 	}
 
 

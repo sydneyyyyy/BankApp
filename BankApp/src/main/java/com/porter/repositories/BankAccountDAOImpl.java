@@ -29,7 +29,7 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 			
 			cs.setInt(1, acct.getAccountNumber());
 			cs.setDouble(2, acct.getBalance());
-			cs.setInt(4, acct.getUserId());
+			cs.setInt(3, acct.getUserId());
 			
 			cs.execute();
 			
@@ -166,7 +166,8 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 		
 		try {
 			
-			String sql = "select * from accounts where accountId = ?;";
+			String sql = "select * from accounts where accountI"
+					+ "d = ?;";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
