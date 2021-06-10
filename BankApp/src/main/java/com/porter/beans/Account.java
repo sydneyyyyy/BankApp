@@ -5,8 +5,8 @@ public class Account {
 	private Integer accountId;
 	private Integer accountNumber;
 	private Double balance;
-//	private String type;
 	private Integer userId;
+	private String isApproved;
 	
 	
 	// Constructors
@@ -37,6 +37,17 @@ public class Account {
 		this.accountNumber = accountNumber;
 		this.balance = balance;
 		this.userId = userId;
+	}
+	
+
+
+	public Account(Integer accountId, Integer accountNumber, Double balance, Integer userId, String isApproved) {
+		super();
+		this.accountId = accountId;
+		this.accountNumber = accountNumber;
+		this.balance = balance;
+		this.userId = userId;
+		this.isApproved = isApproved;
 	}
 
 
@@ -72,14 +83,14 @@ public class Account {
 	}
 
 
-//	public String getType() {
-//		return type;
-//	}
-//
-//
-//	public void setType(String type) {
-//		this.type = type;
-//	}
+	public String getIsApproved() {
+		return isApproved;
+	}
+
+
+	public String setIsApproved(String isApproved) {
+		return this.isApproved = isApproved;
+	}
 
 
 	public Integer getUserId() {
@@ -90,11 +101,16 @@ public class Account {
 	public Integer setUserId(Integer userId) {
 		return this.userId = userId;
 	}
+	
+
+
+	
 
 
 	@Override
 	public String toString() {
-		return "Account [accountId=" + accountId + ", accountNumber=" + accountNumber + ", balance=" + balance + ", userId=" + userId + "]";
+		return "Account [accountId=" + accountId + ", accountNumber=" + accountNumber + ", balance=" + balance
+				+ ", userId=" + userId + ", isApproved=" + isApproved + "]";
 	}
 
 

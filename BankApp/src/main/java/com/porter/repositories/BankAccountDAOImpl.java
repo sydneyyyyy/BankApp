@@ -23,13 +23,14 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 		
 		try {
 
-			String sql = "call create_account(?, ?, ?);";
+			String sql = "call create_account(?, ?, ?, ?);";
 			
 			CallableStatement cs = conn.prepareCall(sql);
 			
 			cs.setInt(1, acct.getAccountNumber());
 			cs.setDouble(2, acct.getBalance());
-			cs.setInt(3, acct.getUserId());
+			cs.setString(3, acct.getIsApproved());
+			cs.setInt(4, acct.getUserId());
 			
 			cs.execute();
 			
@@ -61,6 +62,7 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 				a.setAccountId(rs.getInt("accountId"));
 				a.setAccountNumber(rs.getInt("accountNumber"));
 				a.setBalance(rs.getDouble("balance"));
+				a.setIsApproved(rs.getString("isApproved"));
 				
 				accounts.add(a);
 			}
@@ -75,9 +77,42 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 		
 		return null;
 	}
+	
+	@Override
+	public List<Account> getAllPendingAccounts(String isApproved) {
+		
+		List<Account> allPendingAccounts = new ArrayList<Account>();
+		
+		try {
+			
+			String sql = "select * from accounts where isApproved = ?";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, isApproved);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Account a = new Account();
+				a.setAccountId(rs.getInt("accountId"));
+				a.setAccountNumber(rs.getInt("accountNumber"));
+				a.setBalance(rs.getDouble("balance"));
+				a.setIsApproved(rs.getString("isApproved"));
+				
+				allPendingAccounts.add(a);
+			}
+			
+			return allPendingAccounts;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 
 	@Override
-	public Account updateAccount(Account a) {
+	public Account updateAccountBalance(Account a) {
 		
 		try {
 			
@@ -96,6 +131,27 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 			
 			e.printStackTrace();
 			
+		}
+		
+		return null;
+	}
+	
+	@Override
+	public Account updateAccountApproved(Account a) {
+		
+		try {
+			String sql = "update accounts set isApproved = ? where accountNumber = ?;";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, a.getIsApproved());
+			ps.setInt(2, a.getAccountNumber());
+			
+			ps.execute();
+			
+			return a;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
 		return null;
@@ -166,8 +222,7 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 		
 		try {
 			
-			String sql = "select * from accounts where accountI"
-					+ "d = ?;";
+			String sql = "select * from accounts where accountId = ?;";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
@@ -212,6 +267,7 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 				a.setAccountId(rs.getInt("accountId"));
 				a.setAccountNumber(rs.getInt("accountNumber"));
 				a.setBalance(rs.getDouble("balance"));
+				a.setIsApproved(rs.getString("isApproved"));
 				a.setUserId(rs.getInt("userId"));
 				
 				return a;
@@ -225,5 +281,43 @@ public class BankAccountDAOImpl implements BankAccountDAO{
 		
 		return null;
 	}
+
+	@Override
+	public List<Account> getAllPendingAccounts() {
+		
+		List<Account> pendingAccounts = new ArrayList<Account>();
+		
+		String sql = "select * from accounts where isApproved = ?;";
+		
+		try {
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+//			ps.setString(1, accountId);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				Account a = new Account();
+				a.setAccountId(rs.getInt("accountId"));
+				a.setAccountNumber(rs.getInt("accountNumber"));
+				a.setBalance(rs.getDouble("balance"));
+				a.setIsApproved(rs.getString("isApproved"));
+				
+				pendingAccounts.add(a);
+				
+			}
+			
+			return pendingAccounts;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+
+
+	
 
 }

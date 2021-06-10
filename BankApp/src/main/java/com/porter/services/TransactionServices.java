@@ -20,4 +20,5 @@ public interface TransactionServices {
 	public List<Transaction> viewAllAccountTransactions(User u, Account a);
 	
 	public List<Transaction> viewAllTransactions();
+	
 }

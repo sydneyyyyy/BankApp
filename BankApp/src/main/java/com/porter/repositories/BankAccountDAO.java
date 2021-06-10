@@ -8,7 +8,11 @@ public interface BankAccountDAO {
 	
 	public List<Account> getAllAccounts();
 	
-	public Account updateAccount(Account a);
+	public List<Account> getAllPendingAccounts(String isApproved);
+	
+	public Account updateAccountBalance(Account a);
+	
+	public Account updateAccountApproved(Account a);
 	
 	public List<Account> getAllUserAccounts(Integer i);
 	
@@ -19,5 +23,7 @@ public interface BankAccountDAO {
 	Account createAccount(Account acct);
 
 	public Account getAccountByAccountNumber(int accountNumber);
+	
+	public List<Account> getAllPendingAccounts();
 
 }

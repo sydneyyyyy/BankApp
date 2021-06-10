@@ -73,13 +73,14 @@ public class Driver {
 				}
 				
 				case "3" : {
-					running = false;
+					
 					System.out.println("Are you sure you'd like to quit? yes or no.");
 					collectInput();
 					switch (userInput) {
 					
 						case "yes" : {
 							System.out.println("Goodbye!");
+							running = false;
 							AppLogger.logger.info("Program ended");
 							break;
 						}
@@ -88,7 +89,10 @@ public class Driver {
 							System.out.println(mainMenu);
 						}
 					}
-					break;
+				
+				}
+				default : {
+					System.out.println(mainMenu);
 				}
 			}
 		}
@@ -154,14 +158,12 @@ public class Driver {
 			switch (input) {
 				case "1" : {
 					as.openAccount(scanner, loggedUser);
-					
 					printCustomerMenu();
 					break;
 				} 
 				
 				case "2" : {
 					as.getAllUserAccounts(loggedUser.getId());
-					
 					printCustomerMenu();
 					break;
 				}
@@ -174,11 +176,11 @@ public class Driver {
 				case "4" : {
 					us.logout(loggedUser);
 					System.out.println("Logout successful!");
+					break;
 				}
 				
 				default : {
 					System.out.println("Please make a valid selection.");
-					// print out customer menu again????
 				}
 			}
 			
@@ -204,19 +206,19 @@ public class Driver {
 			
 			case "1" : {
 				ts.makeDeposit(scanner, loggedUser);
-				printCustomerMenu();
+				printTransactionMenu();
 				break;
 			}
 			
 			case "2" : {
 				ts.makeWithdrawal(scanner, loggedUser);
-				printCustomerMenu();
+				printTransactionMenu();
 				break;
 			}
 			
 			case "3" : {
 				ts.makeTransfer(scanner, loggedUser);
-				printCustomerMenu();
+				printTransactionMenu();
 				break;
 			}
 			
@@ -230,13 +232,11 @@ public class Driver {
 				
 					case "1" : {
 						ts.viewAllUserTransactions(loggedUser);
-						printCustomerMenu();
 						break;
 					}
 					
 					case "2" : {
 						ts.viewAllAccountTransactions(loggedUser, currentAccount);
-						printCustomerMenu();
 						break;
 					}
 				}
@@ -280,17 +280,20 @@ public class Driver {
 				}
 				
 				case "3" : {
-					
+					as.updateAccountApproved();
+					printEmployeeMenu();
+					break;
 				}
 				
 				case "4" : {
 					us.logout(loggedUser);
 					System.out.println("Logout Successful!");
+					running = false;
+					break;
 				}
 				
 				default : {
 					System.out.println("Please make a selection!");
-					printEmployeeMenu();
 				}
 			}
 			

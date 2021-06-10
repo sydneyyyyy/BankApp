@@ -40,7 +40,8 @@ public class TransactionServicesImpl implements TransactionServices {
 		accountBalance = acctNum.getBalance() + depositAmount;
 		
 		acctNum.setBalance(accountBalance);
-		bdao.updateAccount(acctNum);
+		bdao.updateAccountBalance(acctNum);
+		
 		AppLogger.logger.info(u.getFirstName() + " " + u.getLastName() + " made a deposit to " + acctNum.getAccountNumber());
 		
 		return acctNum;
@@ -64,7 +65,7 @@ public class TransactionServicesImpl implements TransactionServices {
 		} else {
 			accountBalance = acctNum.getBalance() - withdrawalAmount;
 			acctNum.setBalance(accountBalance);
-			bdao.updateAccount(acctNum);
+			bdao.updateAccountBalance(acctNum);
 			System.out.println(acctNum);
 			AppLogger.logger.info(u.getFirstName() + " " + u.getLastName() + " made a withdrawal from " + acctNum.getAccountNumber());
 		}
@@ -92,7 +93,7 @@ public class TransactionServicesImpl implements TransactionServices {
 		} else {
 			accountBalance = firstAccountNum.getBalance() - withdrawalAmount;
 			firstAccountNum.setBalance(accountBalance);
-			bdao.updateAccount(firstAccountNum);
+			bdao.updateAccountBalance(firstAccountNum);
 			
 			System.out.println("\nPlease type the account number you'd like to transfer to.\n");
 			as.getAllUserAccounts(u.getId());
@@ -103,8 +104,10 @@ public class TransactionServicesImpl implements TransactionServices {
 			System.out.println(secondAccountNum);
 			accountBalance = secondAccountNum.getBalance() + withdrawalAmount;
 			secondAccountNum.setBalance(accountBalance);
-			bdao.updateAccount(secondAccountNum);
+			bdao.updateAccountBalance(secondAccountNum);
 			System.out.println(secondAccountNum);
+			
+			
 			AppLogger.logger.info(u.getFirstName() + " " + u.getLastName() + " transfered money from " + firstAccountNum.getAccountNumber() + " to " + secondAccountNum.getAccountNumber());
 		}
 		
@@ -173,5 +176,9 @@ public class TransactionServicesImpl implements TransactionServices {
 		
 		return allTr;
 	}
+
+
+	
+	
 
 }

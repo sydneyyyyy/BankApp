@@ -18,9 +18,8 @@ public class TransactionDAOImpl implements TransactionDAO {
 	
 	
 	@Override
-	public Transaction createTransaction() {
+	public Transaction createTransaction(Account a, Transaction t) {
 		
-		Transaction t = new Transaction();
 		
 		try {
 			
@@ -28,11 +27,11 @@ public class TransactionDAOImpl implements TransactionDAO {
 			
 			CallableStatement cs = conn.prepareCall(sql);
 			
-			cs.setInt(1, t.getAccountNumber());
+			cs.setInt(1, a.getAccountNumber());
 			cs.setString(2, t.getTransactionType());
 			cs.setDouble(3, t.getTransactionAmount());
-			cs.setDouble(4, t.getAccountBalance());
-			cs.setInt(5, t.getUserId());
+			cs.setDouble(4, a.getBalance());
+			cs.setInt(5, a.getUserId());
 			
 			cs.execute();
 			

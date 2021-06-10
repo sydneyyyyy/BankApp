@@ -14,7 +14,11 @@ public interface AccountServices {
 	
 	public List<Account> getAllAccounts();
 	
+	public Account updateAccountApproved();
+	
 	public List<Account> getAllUserAccounts(Integer i);
 	
 	public List<Account> getAllAccountBalances();
+	
+	public List<Account> getAllPendingAccounts();
 }

@@ -12,7 +12,7 @@ public interface TransactionDAO {
 	
 	public List<Transaction> getAllAccountTransactions(Account a);
 	
-	public Transaction createTransaction();
+	public Transaction createTransaction(Account a, Transaction t);
 	
 	public List<Transaction> getAllTransactions();
 }
