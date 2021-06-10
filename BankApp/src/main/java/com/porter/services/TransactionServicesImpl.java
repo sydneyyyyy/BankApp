@@ -41,6 +41,7 @@ public class TransactionServicesImpl implements TransactionServices {
 		
 		acctNum.setBalance(accountBalance);
 		bdao.updateAccountBalance(acctNum);
+		System.out.println(acctNum);
 		
 		AppLogger.logger.info(u.getFirstName() + " " + u.getLastName() + " made a deposit to " + acctNum.getAccountNumber());
 		

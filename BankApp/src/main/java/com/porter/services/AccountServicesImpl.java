@@ -44,7 +44,7 @@ public class AccountServicesImpl implements AccountServices {
 		System.out.println("Account Number ------------- Balance");
 		
 		for (Account acct : userAccounts) {
-			System.out.println(acct.getAccountNumber() + "                " + acct.getBalance());
+			System.out.println(acct.getAccountNumber() + "                           " + acct.getBalance());
 		}
 		
 		return userAccounts;

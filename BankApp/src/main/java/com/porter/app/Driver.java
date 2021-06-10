@@ -125,10 +125,10 @@ public class Driver {
 	}
 	
 	public static void printSignupMenu() {
-		newUser = us.signup(scanner);
-		System.out.println(newUser);
+		loggedUser = us.signup(scanner);
+		System.out.println(loggedUser);
 		System.out.println("Thank you for being a part of the Bank community " 
-							+ newUser.getFirstName() + " " + newUser.getLastName());
+							+ loggedUser.getFirstName() + " " + loggedUser.getLastName());
 		
 		printCustomerMenu();
 		
@@ -206,19 +206,16 @@ public class Driver {
 			
 			case "1" : {
 				ts.makeDeposit(scanner, loggedUser);
-				printTransactionMenu();
 				break;
 			}
 			
 			case "2" : {
 				ts.makeWithdrawal(scanner, loggedUser);
-				printTransactionMenu();
 				break;
 			}
 			
 			case "3" : {
 				ts.makeTransfer(scanner, loggedUser);
-				printTransactionMenu();
 				break;
 			}
 			
@@ -232,11 +229,13 @@ public class Driver {
 				
 					case "1" : {
 						ts.viewAllUserTransactions(loggedUser);
+						printCustomerMenu();
 						break;
 					}
 					
 					case "2" : {
 						ts.viewAllAccountTransactions(loggedUser, currentAccount);
+						printCustomerMenu();
 						break;
 					}
 				}

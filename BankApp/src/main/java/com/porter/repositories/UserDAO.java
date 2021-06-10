@@ -20,7 +20,7 @@ public class UserDAO implements GenericRepository<User> {
 		
 
 		try {
-			String sql = "call add_user(?, ?, ?, ?, ?);";
+			String sql = "call add_user( ?, ?, ?, ?, ?);";
 			
 			CallableStatement cs = conn.prepareCall(sql);
 			

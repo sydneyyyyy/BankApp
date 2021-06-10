@@ -28,3 +28,49 @@ INFO  | 2021-06-10 01:00:44 | [main] app.Driver (Driver.java:57) - Program Start
 INFO  | 2021-06-10 01:00:57 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Danielle Rose has logged in.
 INFO  | 2021-06-10 01:01:26 | [main] services.AccountServicesImpl (AccountServicesImpl.java:121) - 10005 was approved by the Bank.
 INFO  | 2021-06-10 01:03:52 | [main] services.UserServicesImpl (UserServicesImpl.java:74) - Danielle Rose has logged out.
+INFO  | 2021-06-10 10:26:02 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 10:26:10 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Jane Doe has logged in.
+INFO  | 2021-06-10 10:28:14 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 10:28:18 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Jane Doe has logged in.
+INFO  | 2021-06-10 10:28:50 | [main] services.TransactionServicesImpl (TransactionServicesImpl.java:45) - Jane Doe made a deposit to 10003
+INFO  | 2021-06-10 10:30:16 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 10:30:21 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Jane Doe has logged in.
+INFO  | 2021-06-10 10:30:37 | [main] services.TransactionServicesImpl (TransactionServicesImpl.java:46) - Jane Doe made a deposit to 10001
+INFO  | 2021-06-10 10:33:12 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 10:33:17 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Jane Doe has logged in.
+INFO  | 2021-06-10 10:33:37 | [main] services.TransactionServicesImpl (TransactionServicesImpl.java:71) - Jane Doe made a withdrawal from 10001
+INFO  | 2021-06-10 10:34:28 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 10:34:33 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Jane Doe has logged in.
+INFO  | 2021-06-10 10:35:27 | [main] services.TransactionServicesImpl (TransactionServicesImpl.java:112) - Jane Doe transfered money from 10005 to 10003
+INFO  | 2021-06-10 10:36:13 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 10:36:19 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Jane Doe has logged in.
+INFO  | 2021-06-10 10:36:30 | [main] services.TransactionServicesImpl (TransactionServicesImpl.java:46) - Jane Doe made a deposit to 10001
+INFO  | 2021-06-10 10:37:02 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 10:37:07 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Jane Doe has logged in.
+INFO  | 2021-06-10 10:37:31 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 10:37:47 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Danielle Rose has logged in.
+INFO  | 2021-06-10 10:38:18 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 13:06:33 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 13:06:59 | [main] services.UserServicesImpl (UserServicesImpl.java:64) - Harry Potter has joined the Bank.
+INFO  | 2021-06-10 13:07:17 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 13:07:22 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Harry Potter has logged in.
+INFO  | 2021-06-10 13:07:50 | [main] services.AccountServicesImpl (AccountServicesImpl.java:33) - Harry has created account 10007!
+INFO  | 2021-06-10 13:08:04 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 13:08:13 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Harry Potter has logged in.
+INFO  | 2021-06-10 13:08:30 | [main] services.TransactionServicesImpl (TransactionServicesImpl.java:46) - Harry Potter made a deposit to 10007
+INFO  | 2021-06-10 13:08:43 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Jane Doe has logged in.
+INFO  | 2021-06-10 13:09:03 | [main] services.TransactionServicesImpl (TransactionServicesImpl.java:71) - Jane Doe made a withdrawal from 10003
+INFO  | 2021-06-10 13:09:14 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Jane Doe has logged in.
+INFO  | 2021-06-10 13:09:37 | [main] services.TransactionServicesImpl (TransactionServicesImpl.java:112) - Jane Doe transfered money from 10005 to 10003
+INFO  | 2021-06-10 13:09:57 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Danielle Rose has logged in.
+INFO  | 2021-06-10 13:10:39 | [main] services.AccountServicesImpl (AccountServicesImpl.java:121) - 10007 was approved by the Bank.
+INFO  | 2021-06-10 13:10:48 | [main] services.UserServicesImpl (UserServicesImpl.java:74) - Danielle Rose has logged out.
+INFO  | 2021-06-10 13:10:54 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 13:11:05 | [main] services.UserServicesImpl (UserServicesImpl.java:23) - Jane Doe has logged in.
+INFO  | 2021-06-10 13:24:03 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 13:24:24 | [main] services.UserServicesImpl (UserServicesImpl.java:64) - Hermione Granger has joined the Bank.
+INFO  | 2021-06-10 13:25:58 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 13:26:17 | [main] services.UserServicesImpl (UserServicesImpl.java:64) - Ron Weasley has joined the Bank.
+INFO  | 2021-06-10 13:27:38 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 13:28:08 | [main] app.Driver (Driver.java:57) - Program Started
+INFO  | 2021-06-10 13:29:13 | [main] app.Driver (Driver.java:57) - Program Started

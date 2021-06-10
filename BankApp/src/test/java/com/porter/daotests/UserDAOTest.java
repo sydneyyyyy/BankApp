@@ -27,7 +27,7 @@ public class UserDAOTest {
 		User u5 = new User(5, "janet", "sweetie", "Janet", "Logston", "Employee");
 		User u6 = new User(6, "alex", "tabasco", "Alex", "Nurse", "Employee");
 		User u7 = new User(7, "dani", "password", "Danielle", "Rose", "Employee");
-		User u8 = new User(23, "Enstein", "pass", "Spencer", "Reid", "Customer");
+
 		
 		// add users to users list
 		users.add(u1);
@@ -37,7 +37,6 @@ public class UserDAOTest {
 		users.add(u5);
 		users.add(u6);
 		users.add(u7);
-		users.add(u8);
 	
 		
 		Assert.assertEquals(users, udao.getAll());
